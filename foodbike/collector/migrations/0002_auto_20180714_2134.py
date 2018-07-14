@@ -19,14 +19,4 @@ class Migration(migrations.Migration):
             model_name='log',
             name='visit_count',
         ),
-        migrations.AlterField(
-            model_name='log',
-            name='content_id',
-            field=models.CharField(max_length=8),
-        ),
-        migrations.AlterField(
-            model_name='log',
-            name='user_id',
-            field=models.CharField(max_length=16),
-        ),
     ]

@@ -24,7 +24,7 @@ def select_food():
     return random.randrange(0, MAX_FOOD_ID)
 
 def select_action(user):
-    actions = {'details': 55, 'moreDetails': 29, 'addToList': 15, 'buy': 1}
+    actions = {'details': 55, 'moreDetails': 29, 'addToCart': 15, 'buy': 1}
     return sample(actions)
 
 def sample(dictionary):
