@@ -12,14 +12,12 @@ def log(request):
         user_id = request.POST['user_id']
         content_id = request.POST['content_id']
         event = request.POST['event_type']
-        session_id = request.POST['session_id']
 
         l = Log(
             created=date,
             user_id=user_id,
             content_id=str(content_id),
-            event=event,
-            session_id=str(session_id))
+            event=event)
         l.save()
     else:
         HttpResponse('log only works with POST')
