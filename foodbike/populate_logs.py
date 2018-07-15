@@ -40,7 +40,7 @@ def main():
     Log.objects.all().delete()
     random.seed(SEED)
 
-    number_of_event = 10000
+    number_of_event = 70000
 
     print("Generating Data")
     users = [
@@ -51,6 +51,48 @@ def main():
         User("400005"),
         User("400006"),
         User("400007"),
+        User("400008"),
+        User("400009"),
+        User("4000010"),
+        User("4000011"),
+        User("4000012"),
+        User("4000013"),
+        User("4000013"),
+        User("4000015"),
+        User("4000016"),
+        User("4000017"),
+        User("4000018"),
+        User("4000019"),
+        User("4000020"),
+        User("4000021"),
+        User("4000022"),
+        User("4000023"),
+        User("4000024"),
+        User("4000025"),
+        User("4000026"),
+        User("4000027"),
+        User("4000028"),
+        User("4000029"),
+        User("4000030"),
+        User("4000031"),
+        User("4000032"),
+        User("4000033"),
+        User("4000033"),
+        User("4000035"),
+        User("4000036"),
+        User("4000037"),
+        User("4000038"),
+        User("4000039"),
+        User("4000040"),
+        User("4000041"),
+        User("4000042"),
+        User("4000043"),
+        User("4000044"),
+        User("4000045"),
+        User("4000046"),
+        User("4000047"),
+        User("4000048"),
+        User("4000049"),
     ]
 
     print("Simulating " + str(len(users)) + " visitors")
