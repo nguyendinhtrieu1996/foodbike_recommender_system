@@ -74,7 +74,7 @@ def save_ratings(ratings, user_id, type):
                 rating_timestamp=datetime.datetime.now(),
                 type=type
             ).save()
-            print('DEBUG ratings {}'.format(user_id, str(content_id)))
+            # print('DEBUG ratings {}'.format(user_id, str(content_id)))
 
 def calculate_ratings():
     rows = query_log_for_users()

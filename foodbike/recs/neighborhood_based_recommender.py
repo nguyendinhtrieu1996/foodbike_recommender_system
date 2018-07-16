@@ -15,13 +15,13 @@ from recommender.models import Similarity
 
 class NeighborhoodBasedRecs(base_recommender):
 
-    def __init__(self, neighborhood_size=15, min_sim=0.0):
+    def __init__(self, neighborhood_size=100, min_sim=0.0):
         self.neighborhood_size = neighborhood_size
         self.min_sim = min_sim
         self.max_candidates = 100
 
     def recommend_items(self, user_id, num=6):
-        active_user_items = Rating.objects.filter(user_id=user_id).order_by('-rating')[:100]
+        active_user_items = Rating.objects.filter(user_id=user_id).order_by('-rating')
         return self.recommend_items_by_ratings(user_id, active_user_items.values(), num)
 
     def recommend_items_by_ratings(self, user_id, active_user_items, num=6):
@@ -31,7 +31,7 @@ class NeighborhoodBasedRecs(base_recommender):
         start = time.time()
         food_ids = {food['food_id']: food['rating'] for food in active_user_items}
 
-        print('DEBUG food_ids {}'.format(food_ids))
+        print('DEBUG len food_ids {}'.format(len(food_ids)))
 
         user_mean = sum(food_ids.values()) / len(food_ids)
 
@@ -42,9 +42,9 @@ class NeighborhoodBasedRecs(base_recommender):
 
         print('DEBUG candidate items {}'.format(candidate_items))
 
-        candidate_items = candidate_items.order_by('-similarity')[:self.max_candidates]
+        candidate_items = candidate_items.order_by('-similarity')
 
-        print('DEBUG candidate len {}')
+        print('DEBUG candidate len {}'.format(len(candidate_items)))
 
         recs = dict()
         for candidate in candidate_items:
@@ -52,7 +52,7 @@ class NeighborhoodBasedRecs(base_recommender):
             pre = 0
             sim_sum = 0
 
-            rated_items = [i for i in candidate_items if i.target == target][:self.neighborhood_size]
+            rated_items = [i for i in candidate_items if i.target == target]
 
             if len(rated_items) > 1:
                 for sim_item in rated_items:
@@ -63,7 +63,10 @@ class NeighborhoodBasedRecs(base_recommender):
                     recs[target] = {'prediction': Decimal(user_mean) + pre / sim_sum,
                                     'sim_items': [r.source for r in rated_items]}
 
-        sorted_items = sorted(recs.items(), key=lambda item: -float(item[1]['prediction']))[:num]
+        sorted_items = sorted(recs.items(), key=lambda item: -float(item[1]['prediction']))
+
+        print('DEBUG Sorted_items {}'.format(sorted_items))
+
         return sorted_items
 
     def predict_score(self, user_id, item_id):

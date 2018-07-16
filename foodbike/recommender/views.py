@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+import pyodbc
+
 from recs.neighborhood_based_recommender import NeighborhoodBasedRecs
 
 def recs_cf(request, user_id, num=100):
@@ -13,3 +15,11 @@ def recs_cf(request, user_id, num=100):
     }
 
     return JsonResponse(data, safe=False)
+
+def excute_sql():
+    conn = pyodbc.connect("DRIVER={SQL Server};server=localhost;database=foodbike;uid=sa;pwd=123456")
+    cur = conn.cursor()
+    cur.execute("select * from foodbike")
+
+    for row in cur:
+        print(row.name)
