@@ -4,7 +4,7 @@ from django.db import models
 class Rating(models.Model):
     user_id = models.CharField(max_length=128)
     food_id = models.IntegerField()
-    rating = models.IntegerField()
+    rating = models.DecimalField(decimal_places=2, max_digits=4)
     rating_timestamp = models.DateTimeField()
     type = models.CharField(max_length=8, default='explicit')
 

@@ -86,19 +86,60 @@ DATABASES = {
 }
 
 
+# DATABASES = {
+#     'default': {
+#         'NAME': 'Test',
+#         'ENGINE': 'sqlserver_ado',
+#         'HOST': 'NGUYENDINHTRIEU\DINHTRIEUSQL',
+#         'USER': 'sa',
+#         'PASSWORD': '123456',
+#         'OPTIONS': {
+#             'provider': 'SQLOLEDB',
+#             'use_legacy_date_fields': 'True'
+#         }
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'NAME': 'foodbike',
-        'ENGINE': 'sqlserver_ado',
-        'HOST': 'NGUYENDINHTRIEU\DINHTRIEUSQL',
-        'USER': 'sa',
-        'PASSWORD': '123456',
-        'OPTIONS': {
-            'provider': 'SQLOLEDB',
-            'use_legacy_date_fields': 'True'
-        }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'FoodBike',
+        'USER': 'postgres',
+        'PASSWORD': '1251996',
+        'HOST': 'localhost',
+        'PORT': 5432
     }
 }
+
+# DATABASES = {
+#    'default': {
+#        'ENGINE': "django_pyodbc",
+#        'HOST': "127.0.0.1,1433",
+#        'USER': "sa",
+#        'PASSWORD': "123456",
+#        'NAME': "Test",
+#        'OPTIONS': {
+#            'host_is_server': True
+#        },
+#    }
+# }
+#
+# DATABASES = {
+#    'default': {
+#        'ENGINE': "sqlserver_ado",
+#        'HOST': "NGUYENDINHTRIEU\DINHTRIEUSQL",
+#        'USER': "sa",
+#        'PASSWORD': "123456",
+#        'NAME': "Test",
+#        'PORT': '1433',
+#        'OPTIONS': {
+#         'driver': 'SQL Server Native Client 11.0',
+#     },
+#    }
+# }
+
+DATABASE_CONNECTION_POOLING = False
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

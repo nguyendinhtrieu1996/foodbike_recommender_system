@@ -15,9 +15,9 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('created', models.DateField()),
-                ('source', models.CharField(db_index=True, max_length=16)),
-                ('target', models.CharField(max_length=16)),
-                ('similarity', models.FloatField()),
+                ('source', models.IntegerField()),
+                ('target', models.IntegerField()),
+                ('similarity', models.DecimalField(max_digits=8, decimal_places=7)),
             ],
             options={
                 'db_table': 'similarity',

@@ -10,7 +10,7 @@ django.setup()
 from collector.models import Log
 
 SEED = 0
-MAX_FOOD_ID = 100
+MAX_FOOD_ID = 150
 
 class User:
     userId = ""
@@ -40,7 +40,7 @@ def main():
     Log.objects.all().delete()
     random.seed(SEED)
 
-    number_of_event = 70000
+    number_of_event = 100000
 
     print("Generating Data")
     users = [
@@ -93,6 +93,37 @@ def main():
         User("4000047"),
         User("4000048"),
         User("4000049"),
+        User("4000050"),
+        User("4000051"),
+        User("4000052"),
+        User("4000053"),
+        User("4000054"),
+        User("4000055"),
+        User("4000056"),
+        User("4000057"),
+        User("4000058"),
+        User("4000059"),
+        User("4000060"),
+        User("4000061"),
+        User("4000062"),
+        User("4000063"),
+        User("4000063"),
+        User("4000065"),
+        User("4000066"),
+        User("4000067"),
+        User("4000068"),
+        User("4000069"),
+        User("4000070"),
+        User("4000071"),
+        User("4000072"),
+        User("4000073"),
+        User("4000074"),
+        User("4000075"),
+        User("4000076"),
+        User("4000077"),
+        User("4000078"),
+        User("4000079"),
+        User("4000080"),
     ]
 
     print("Simulating " + str(len(users)) + " visitors")
@@ -103,13 +134,12 @@ def main():
         selected_food = select_food()
         action = select_action(user)
         # if action == 'buy':
-        # user.events[user.userId].append(selected_food)
-        print("=================================")
-        print("user id " + user.userId)
-        print("selected id " + str(selected_food))
-        print(action)
-        print("action " + action)
-        # print("user id " + user.userId + " selects food " + str(selected_food) + " and " + action)
+        #     user.events[user.userId].append(selected_food)
+
+        # print("===============")
+        # print(user.userId)
+        # print(action)
+        print("user id " + user.userId + " selects food " + str(selected_food) + " and " + action)
 
         l = Log(user_id=user.userId,
                 content_id=selected_food,

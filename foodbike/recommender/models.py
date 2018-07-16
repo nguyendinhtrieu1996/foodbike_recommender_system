@@ -2,9 +2,9 @@ from django.db import models
 
 class Similarity(models.Model):
     created = models.DateField()
-    source = models.CharField(max_length=16, db_index=True)
-    target = models.CharField(max_length=16)
-    similarity = models.FloatField()
+    source = models.IntegerField()
+    target = models.IntegerField()
+    similarity = models.DecimalField(max_digits=8, decimal_places=7)
 
     class Meta:
         db_table = 'similarity'

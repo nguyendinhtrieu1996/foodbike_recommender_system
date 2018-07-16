@@ -59,7 +59,7 @@ def calculate_implicit_ratings_for_user(user_id):
 
 def calculate_implicit_ratings_w_timedecay(user_id):
     data = query_log_data_for_user(user_id)
-    weights = {'buy': w1, 'addToCart': w2, 'moredetails': w3, 'details': w4}
+    weights = {'buy': w1, 'addToCart': w2, 'moreDetails': w3, 'details': w4}
     ratings = {}
 
 def save_ratings(ratings, user_id, type):
@@ -67,15 +67,14 @@ def save_ratings(ratings, user_id, type):
 
     for content_id, rating in ratings.items():
         if rating > 0:
-            print('================{} {} {}'.format(user_id, str(content_id), str(rating)))
             Rating(
                 user_id=user_id,
                 food_id=int(content_id),
-                rating=decimal.Decimal(rating),
+                rating=rating,
                 rating_timestamp=datetime.datetime.now(),
                 type=type
             ).save()
-            print('+++++++++{} {}'.format(user_id, str(content_id)))
+            print('DEBUG ratings {}'.format(user_id, str(content_id)))
 
 def calculate_ratings():
     rows = query_log_for_users()
