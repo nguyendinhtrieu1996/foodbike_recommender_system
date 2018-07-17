@@ -1,1 +1,1 @@
-import django.db import model
+# import django.db import model

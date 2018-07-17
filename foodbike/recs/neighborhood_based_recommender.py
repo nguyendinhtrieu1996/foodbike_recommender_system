@@ -20,11 +20,11 @@ class NeighborhoodBasedRecs(base_recommender):
         self.min_sim = min_sim
         self.max_candidates = 100
 
-    def recommend_items(self, user_id, num=6):
+    def recommend_items(self, user_id):
         active_user_items = Rating.objects.filter(user_id=user_id).order_by('-rating')
-        return self.recommend_items_by_ratings(user_id, active_user_items.values(), num)
+        return self.recommend_items_by_ratings(user_id, active_user_items.values())
 
-    def recommend_items_by_ratings(self, user_id, active_user_items, num=6):
+    def recommend_items_by_ratings(self, user_id, active_user_items):
         if len(active_user_items) == 0:
             return {}
 
@@ -39,8 +39,6 @@ class NeighborhoodBasedRecs(base_recommender):
                                                     & ~Q(target__in=food_ids.keys())
                                                     & Q(similarity__gt=self.min_sim)
                                                     )
-
-        print('DEBUG candidate items {}'.format(candidate_items))
 
         candidate_items = candidate_items.order_by('-similarity')
 
@@ -65,8 +63,6 @@ class NeighborhoodBasedRecs(base_recommender):
 
         sorted_items = sorted(recs.items(), key=lambda item: -float(item[1]['prediction']))
 
-        print('DEBUG Sorted_items {}'.format(sorted_items))
-
         return sorted_items
 
     def predict_score(self, user_id, item_id):
@@ -76,7 +72,7 @@ class NeighborhoodBasedRecs(base_recommender):
         print('predict score by ratings')
 
 def main():
-    rec = NeighborhoodBasedRecs().recommend_items('dinhtrieu1251996', 30)
+    rec = NeighborhoodBasedRecs().recommend_items('dinhtrieu1251996')
     print(len(rec))
 
 if __name__ == '__main__':

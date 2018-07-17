@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'collector',
     'analytics',
     'recommender',
+    'foodbike',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -109,6 +110,17 @@ DATABASES = {
         'PASSWORD': '1251996',
         'HOST': 'localhost',
         'PORT': 5432
+    },
+    'sql_db': {
+        'NAME': 'Test_FB',
+        'ENGINE': 'sqlserver_ado',
+        'HOST': 'NGUYENDINHTRIEU\DINHTRIEUSQL',
+        'USER': 'sa',
+        'PASSWORD': '123456',
+        'OPTIONS': {
+            'provider': 'SQLOLEDB',
+            'use_legacy_date_fields': 'True'
+        }
     }
 }
 

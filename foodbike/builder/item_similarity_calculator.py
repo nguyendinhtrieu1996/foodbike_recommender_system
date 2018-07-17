@@ -63,9 +63,6 @@ class ItemSimilarityMatrixBuilder(object):
         cor = cor.multiply(cor > self.min_sim)
         cor = cor.multiply(overlap_matrix > self.min_overlap)
 
-        print("===================COR==========================")
-        print(cor)
-
         foods = dict(enumerate(ratings['food_id'].cat.categories))
         logger.debug('Correlation is finished, done in {} seconds'.format(datetime.now() - start_time))
 
@@ -180,30 +177,6 @@ class ItemSimilarityMatrixBuilder(object):
 
         Similarity.objects.bulk_create(sims)
         logger.info('{} Similarity items saved, done in {} seconds'.format(no_saved, datetime.now() - start_time))
-
-
-def new_format_decimal_as_string(value):
-    """
-    Convert a decimal.Decimal to a fixed point string. Code borrowed from
-    Python's moneyfmt recipe.
-    https://docs.python.org/2/library/decimal.html#recipes
-    """
-    sign, digits, exp = value.as_tuple()
-    if exp > 0:
-        return "%d" % value
-    result = []
-    digits = list(map(str, digits))
-    build, next = result.append, digits.pop
-    for i in range(-exp):
-        build(next() if digits else '0')
-    build('.')
-    if not digits:
-        build('0')
-    while digits:
-        build(next())
-    if sign:
-        build('-')
-    return ''.join(reversed(result))
 
 def main():
     logger.info("Calculation of item similarity")
