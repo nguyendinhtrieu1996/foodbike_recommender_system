@@ -41,6 +41,26 @@ def get_all_foods(request):
     }
     return JsonResponse(response, safe=False)
 
+def item_news_feed(request, user_id, page_number):
+    min_sim = request.GET.get('min_sim', 0.1)
+    sorted_items = NeighborhoodBasedRecs(min_sim=min_sim).recommend_items(user_id)
+
+    number_item_per_page = 5
+    paginator = Paginator(sorted_items, number_item_per_page)
+    number_pages = paginator.num_pages
+
+    page_items = paginator.page(page_number)
+    page_items = page_items.object_list
+    ids = []
+
+    for item in page_items:
+        ids.append(item[0])
+
+    response = {
+        'NumberPages': number_pages,
+        'Data': ids
+    }
+    return JsonResponse(response, safe=False)
 
 def news_feed(request, user_id, longitude, latitude, page_number):
     min_sim = request.GET.get('min_sim', 0.1)
