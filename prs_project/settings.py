@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '8+feye$471#@jyfc10rx0yuuhe1)b_bnqzc%0lcn1rhtwmw72w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -87,69 +87,30 @@ DATABASES = {
 }
 
 
-# DATABASES = {
-#     'default': {
-#         'NAME': 'Test',
-#         'ENGINE': 'sqlserver_ado',
-#         'HOST': 'NGUYENDINHTRIEU\DINHTRIEUSQL',
-#         'USER': 'sa',
-#         'PASSWORD': '123456',
-#         'OPTIONS': {
-#             'provider': 'SQLOLEDB',
-#             'use_legacy_date_fields': 'True'
-#         }
-#     }
-# }
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'FoodBike',
-        'USER': 'postgres',
-        'PASSWORD': '1251996',
-        'HOST': 'localhost',
-        'PORT': 5432
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'nguyendinhtrieu1$foodbike',
+        'USER': 'nguyendinhtrieu1',
+        'PASSWORD': 'truongmynhung',
+        'HOST': 'nguyendinhtrieu1996.mysql.pythonanywhere-services.com',
+        # 'PORT': 5432
     },
     'sql_db': {
-        'NAME': 'Test_FB',
-        'ENGINE': 'sqlserver_ado',
-        'HOST': 'NGUYENDINHTRIEU\DINHTRIEUSQL',
-        'USER': 'sa',
-        'PASSWORD': '123456',
+        'NAME': 'food9053_foodbike',
+        'ENGINE': 'sqlserver_pymssql',
+        'HOST': '112.78.2.156',
+        'USER': 'food9053_food9053',
+        'PASSWORD': '3aT/S$cawy4B5n%',
+        'PORT': '1433',
         'OPTIONS': {
-            'provider': 'SQLOLEDB',
-            'use_legacy_date_fields': 'True'
+            # 'provider': 'SQLOLEDB',
+            # 'use_legacy_date_fields': 'True'
+            # 'driver': 'ODBC Driver 13 for SQL Server',
         }
     }
 }
 
-# DATABASES = {
-#    'default': {
-#        'ENGINE': "django_pyodbc",
-#        'HOST': "127.0.0.1,1433",
-#        'USER': "sa",
-#        'PASSWORD': "123456",
-#        'NAME': "Test",
-#        'OPTIONS': {
-#            'host_is_server': True
-#        },
-#    }
-# }
-#
-# DATABASES = {
-#    'default': {
-#        'ENGINE': "sqlserver_ado",
-#        'HOST': "NGUYENDINHTRIEU\DINHTRIEUSQL",
-#        'USER': "sa",
-#        'PASSWORD': "123456",
-#        'NAME': "Test",
-#        'PORT': '1433',
-#        'OPTIONS': {
-#         'driver': 'SQL Server Native Client 11.0',
-#     },
-#    }
-# }
 
 DATABASE_CONNECTION_POOLING = False
 
