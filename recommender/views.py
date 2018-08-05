@@ -51,14 +51,20 @@ def item_news_feed(request, user_id, page_number):
 
     page_items = paginator.page(page_number)
     page_items = page_items.object_list
-    ids = []
+    data = []
 
     for item in page_items:
-        ids.append(item[0])
+        id = item[0]
+        rating = calculate_rating(id)
+        value = {
+            'Id': id,
+            'Rating': rating
+        }
+        data.append(value)
 
     response = {
         'NumberPages': number_pages,
-        'Data': ids
+        'Data': data
     }
     return JsonResponse(response, safe=False)
 
@@ -99,11 +105,11 @@ def news_feed(request, user_id, longitude, latitude, page_number):
         value = {
             'Id': food.id,
             'Name': food.name,
-            'Address': user.address,
+            'Address': "status",
             'FoodImage': food.defaultimage,
             'Rating': rating,
-            'Status': status,
-            'Distance': distance
+            'Status': "status",
+            'Distance': "distance"
         }
         data.append(value)
 
