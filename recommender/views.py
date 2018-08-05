@@ -44,7 +44,12 @@ def get_all_foods(request):
 def item_news_feed(request, user_id, page_number):
     min_sim = request.GET.get('min_sim', 0.1)
     sorted_items = NeighborhoodBasedRecs(min_sim=min_sim).recommend_items(user_id)
-
+    if sorted_items.count() < 10:
+        response = {
+            'NumberPages': 0,
+            'Data': None
+        }
+        return JsonResponse(response, safe=False)
     number_item_per_page = 5
     paginator = Paginator(sorted_items, number_item_per_page)
     number_pages = paginator.num_pages
